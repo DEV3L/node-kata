@@ -1,0 +1,10 @@
+{
+  "name": "node-kata",
+  "version": "1.0.0",
+  "description": "Katas in Nodejs",
+  "main": "index.js",
+  "repository": "git@github.com:DEV3L/node-kata.git",
+  "author": "DEV3L <jus.beall@gmail.com>",
+  "license": "BEER-WARE",
+  "private": false
+}
