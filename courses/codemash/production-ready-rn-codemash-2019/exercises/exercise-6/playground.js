@@ -4,12 +4,27 @@ import { View, Button, Animated, StyleSheet, LayoutAnimation, UIManager } from '
 
 export default class Playground extends React.Component {
   state = {
-    swapped: false,
-  }
+    swapped: false
+  };
 
   handlePress() {
+    LayoutAnimation.configureNext({
+      duration: 500,
+      update: {
+        type: LayoutAnimation.Types.linear
+      },
+      create: {
+        type: LayoutAnimation.Types.linear,
+        property: LayoutAnimation.Properties.opacity
+      },
+      delete: {
+        type: LayoutAnimation.Types.linear,
+        property: 'scaleX'
+      }
+    });
+
     this.setState({
-      swapped: !this.state.swapped,
+      swapped: !this.state.swapped
     });
   }
 
@@ -35,13 +50,8 @@ export default class Playground extends React.Component {
         <View style={this.getTriangleStyle()} />
         <View style={[styles.triangle, styles.topRight]} />
         <View style={this.getSquareStyle()} />
-        {this.state.swapped && (
-          <View style={[styles.square, styles.bottomLeft]} />
-        )}
-        <Button
-          title="Press to play animation!"
-          onPress={() => this.handlePress()}
-        />
+        {this.state.swapped && <View style={[styles.square, styles.bottomLeft]} />}
+        <Button title="Press to play animation!" onPress={() => this.handlePress()} />
       </View>
     );
   }
@@ -62,28 +72,28 @@ const styles = StyleSheet.create({
     borderLeftColor: 'transparent',
     borderRightColor: 'transparent',
     borderBottomColor: 'red',
-    position: 'absolute',
+    position: 'absolute'
   },
   topLeft: {
     top: 50,
-    left: 20,
+    left: 20
   },
   bottomRight: {
     bottom: 50,
-    right: 20,
+    right: 20
   },
   bottomLeft: {
     bottom: 50,
-    left: 20,
+    left: 20
   },
   topRight: {
     top: 50,
-    right: 20,
+    right: 20
   },
   square: {
     width: 100,
     height: 100,
     backgroundColor: 'blue',
-    position: 'absolute',
-  },
+    position: 'absolute'
+  }
 });
