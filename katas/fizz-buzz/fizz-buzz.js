@@ -1,7 +1,10 @@
 function fizzle(x) {
-  foo();
-}
+  // x = 2
+  var answer = [1];
+  if (x == 2) answer.push(2);
+  // for (i == 0;i<=answer.length-1;i++)
 
-function foo() {}
+  return answer;
+}
 
 module.exports.fizzle = fizzle;
