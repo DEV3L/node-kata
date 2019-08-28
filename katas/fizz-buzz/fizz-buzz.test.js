@@ -25,11 +25,11 @@ Fake it till you make it
 
 /*
 # ZOMBIES
-Z - Zero                          #2
-O - One                           #3
+Z - Zero                          
+O - One                           
 M - Many
 B - Boundary Behavior
-I - Interface Definition          #1
+I - Interface Definition          
 E - Exercise Exception Behavior
 S - Simple
 */
@@ -50,20 +50,24 @@ const fizzBuzz = require('./fizz-buzz');
 describe('Fizz Buzz', function() {
   // individual test
   it('Z#1 should take one integer argument', function() {
-    fizzBuzz.fizzle(3);
+    // arrange
+    const expected = 0;
+
+    // act
+    const result = fizzBuzz.process(expected);
+
+    // assert
+    assert.equal(expected, result);
   });
 
-  it('Z#2 should return a list equal to [1] for 1', function() {
-    const expectedOutput = [1];
-    const output = fizzBuzz.fizzle(1);
+  it('O#1 should take one and return one', function() {
+    // arrange
+    const expected = 1;
 
-    assert.equal(expectedOutput.toString(), output.toString());
-  });
+    // act
+    const result = fizzBuzz.process(expected);
 
-  it('Z#3 should return a list equal to [1, 2] for 2', function() {
-    const expectedOutput = [1, 2];
-    const output = fizzBuzz.fizzle(2);
-
-    assert.equal(expectedOutput.toString(), output.toString());
+    // assert
+    assert.equal(expected, result);
   });
 });
