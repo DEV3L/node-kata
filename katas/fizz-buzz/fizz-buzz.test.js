@@ -1,3 +1,5 @@
+var _ = require('underscore');
+
 /*
 # Three Laws of Test Driven Development
 - You are not allowed to write any production code unless it is to make a failing unit test pass.
@@ -51,23 +53,48 @@ describe('Fizz Buzz', function() {
   // individual test
   it('Z#1 should take one integer argument', function() {
     // arrange
-    const expected = 0;
+    const expected = [0];
 
     // act
-    const result = fizzBuzz.process(expected);
+    const result = fizzBuzz.process(0);
 
     // assert
-    assert.equal(expected, result);
+    assert.equal(expected[0], result[0]);
   });
 
   it('O#1 should take one and return one', function() {
     // arrange
-    const expected = 1;
+    const expected = [1];
 
     // act
-    const result = fizzBuzz.process(expected);
+    const result = fizzBuzz.process(1);
 
     // assert
-    assert.equal(expected, result);
+    assert.equal(expected[1], result[1]);
+  });
+
+  it('M# should take two and return an array of one two', function() {
+    // arrange
+    const expected = [1, 2];
+
+    // act
+    const result = fizzBuzz.process(2);
+
+    // assert
+    assert.equal(expected[0], result[0]);
+    assert.equal(expected[1], result[1]);
+  });
+
+  it('B# should take three and return an array of one two fizz', function() {
+    // arrange
+    const expected = [1, 2, 'fizz', 3, 4, 5, 'fizz', 7, 8, 'fizz'];
+
+    // act
+    const result = fizzBuzz.process(9);
+
+    // assert
+    _.range(3).forEach(n => {
+      assert.equal(expected[n], result[n]);
+    });
   });
 });

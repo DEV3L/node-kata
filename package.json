@@ -12,5 +12,8 @@
   },
   "devDependencies": {
     "mocha": "^4.0.1"
+  },
+  "dependencies": {
+    "underscore": "^1.9.1"
   }
 }
