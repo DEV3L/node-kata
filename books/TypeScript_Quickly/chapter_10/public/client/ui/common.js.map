@@ -1,0 +1,13 @@
+{
+  "version": 3,
+  "file": "common.js",
+  "sourceRoot": "",
+  "sources": [
+    "../../../src/client/ui/common.ts"
+  ],
+  "names": [],
+  "mappings": "AAAA,OAAO,EAAE,IAAI,EAAkB,MAAM,4CAA4C,CAAC;AAUlF,MAAM,UAAU,QAAQ,CAAC,IAAY;IACnC,OAAO,IAAI,CAAC,WAAW,EAAE,CAAC,OAAO,CAAC,eAAe,EAAE,CAAC,CAAC,EAAE,EAAE,CAAC,CAAC,CAAC,WAAW,EAAE,CAAC,CAAC;AAC7E,CAAC;AAED,MAAM,UAAU,kBAAkB,CAAC,YAA2B;IAC5D,OAAO,YAAY,CAAC,GAAG,CAAC,CAAC,CAAC,EAAE,EAAE,CAAC,GAAG,CAAC,CAAC,MAAM,MAAM,CAAC,CAAC,SAAS,MAAM,CAAC,CAAC,MAAM,EAAE,CAAC,CAAC,IAAI,CAAC,IAAI,CAAC,CAAC;AAC1F,CAAC;AAED,MAAM,UAAU,WAAW,CAAC,kBAA0B,GAAG;IACvD,OAAO,IAAI,OAAO,CAAC,CAAC,OAAO,EAAE,EAAE;QAC7B,UAAU,CAAC,GAAG,EAAE,CAAC,OAAO,EAAE,EAAE,IAAI,CAAC,KAAK,CAAC,IAAI,CAAC,MAAM,EAAE,GAAG,IAAI,CAAC,KAAK,CAAC,eAAe,CAAC,CAAC,CAAC,CAAC;IACvF,CAAC,CAAC,CAAC;AACL,CAAC;AAED,MAAM,KAAW,EAAE,CAwBlB;AAxBD,WAAiB,EAAE;IACjB,SAAgB,MAAM,CAAC,KAAa,EAAE,WAAoB,KAAK;QAC7D,OAAO,IAAI,CAAA,oCAAoC,QAAQ,mBAAmB,KAAK,YAAY,CAAC;IAC9F,CAAC;IAFe,SAAM,SAErB,CAAA;IAED,SAAgB,SAAS,CACvB,IAAY,EACZ,KAAU,EACV,aAA4B,EAC5B,WAAoB,KAAK,EACzB,OAA0B,MAAM;QAEhC,OAAO,IAAI,CAAA;;eAEA,IAAI;eACJ,IAAI;iBACF,KAAK;kBACJ,aAAa;oBACX,QAAQ;sBACN,QAAQ,CAAC,IAAI,CAAC;;;KAG/B,CAAC;IACJ,CAAC;IAlBe,YAAS,YAkBxB,CAAA;AACH,CAAC,EAxBgB,EAAE,KAAF,EAAE,QAwBlB",
+  "sourcesContent": [
+    "import { html, TemplateResult } from '../../../node_modules/lit-html/lit-html.js';\nimport { Transaction } from '../lib/blockchain-node.js';\n\nexport type Callback = () => void;\n\nexport interface Renderable<T> {\n  requestRendering: Callback;\n  render(data: T): TemplateResult;\n}\n\nexport function titleize(text: string) {\n  return text.toLowerCase().replace(/(?:^|\\s|-)\\S/g, (x) => x.toUpperCase());\n}\n\nexport function formatTransactions(transactions: Transaction[]): string {\n  return transactions.map((t) => `${t.sender} → ${t.recipient}: $${t.amount}`).join('\\n');\n}\n\nexport function randomDelay(maxMilliseconds: number = 100): Promise<void> {\n  return new Promise((resolve) => {\n    setTimeout(() => resolve(), Math.floor(Math.random() * Math.floor(maxMilliseconds)));\n  });\n}\n\nexport namespace UI {\n  export function button(label: string, disabled: boolean = false) {\n    return html` <button type=\"submit\" ?disabled=${disabled} class=\"ripple\">${label}</button> `;\n  }\n\n  export function formField(\n    name: string,\n    value: any,\n    changeHandler: EventListener,\n    disabled: boolean = false,\n    type: 'text' | 'number' = 'text'\n  ) {\n    return html`\n      <input\n        name=${name}\n        type=${type}\n        .value=${value}\n        @change=${changeHandler}\n        ?disabled=${disabled}\n        placeholder=${titleize(name)}\n        autocomplete=\"off\"\n      />\n    `;\n  }\n}\n"
+  ]
+}

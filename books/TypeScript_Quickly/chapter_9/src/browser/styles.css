@@ -135,16 +135,6 @@ form {
   position: relative;
   text-overflow: ellipsis;
 }
-/* 
-.prev-hash .hash-value {
-  padding-left: 15px;
-} */
-
-/* .prev-hash .hash-value:before {
-  content: '←';
-  position: absolute;
-  left: 0;
-} */
 
 .block__timestamp {
   color: var(--secondary-text-color);
